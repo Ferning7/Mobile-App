@@ -4,12 +4,12 @@
     "slug": "links",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/images/icon.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "links",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/splash-icon.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#09090B"
     },
