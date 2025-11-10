@@ -1,11 +1,10 @@
-import { StyleSheet} from "react-native"
-import {colors} from "@/styles/colors"
+import { StyleSheet } from "react-native"
+import { colors } from "@/styles/colors"
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        paddingTop: 62,
     },
 
     title: {
@@ -13,6 +12,12 @@ export const styles = StyleSheet.create({
         fontSize: 22,
     },
 
-    header: {},
-    logo: {},
+    header: {
+        paddingHorizontal: 24,
+    },
+
+    logo: {
+        height: 32,
+        width: 38,
+    },
 })
