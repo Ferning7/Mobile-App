@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons"
-import { Image, View } from "react-native"
+import { Image, View, TouchableOpacity } from "react-native"
 
 import { colors } from "@/styles/colors"
 import { styles } from "./styles"
@@ -11,8 +11,9 @@ export default function Index() {
             <View style={styles.header}>
                 <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
-
-                <MaterialIcons name="add" size={32} color={colors.green[300]}></MaterialIcons>
+                <TouchableOpacity>
+                    <MaterialIcons name="add" size={32} color={colors.green[300]}></MaterialIcons>
+                </TouchableOpacity>
             </View>
         </View>
     )
