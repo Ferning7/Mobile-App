@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
 
     details: {
         flex: 1,
-
     },
+
     name: {
         color: colors.gray[100],
         fontSize: 16,
-        fontWeight: "600",
+        fontWeight: "600"
     },
 
     url: {
