@@ -4,6 +4,9 @@ import { Image, TouchableOpacity, View } from "react-native"
 import { colors } from "@/styles/colors"
 import { styles } from "./styles"
 
+import { Categories } from "@/components/categories"
+import { Link } from "@/components/link"
+
 export default function Index() {
     return (
         <View style={styles.container}>
@@ -14,6 +17,8 @@ export default function Index() {
                     <MaterialIcons name="add" size={32} color={colors.green[300]}></MaterialIcons>
                 </TouchableOpacity>
             </View>
+            <Categories/>
+            <Link name="Rocketseat" url="https://rocketseat.com.br/" onDetails={() => console.log("Clicou!")}/>
         </View>
     )
 }

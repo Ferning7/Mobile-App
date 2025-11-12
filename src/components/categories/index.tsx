@@ -2,6 +2,7 @@ import { FlatList } from "react-native";
 
 import { categories } from "@/utils/categories";
 import { Category } from "../category";
+import { styles } from "./styles";
 
 export function Categories() {
     return (
@@ -11,6 +12,10 @@ export function Categories() {
             renderItem={({ item }) => (
                 <Category name={item.name} icon={item.icon} isSelected={false} />
             )}
+            horizontal
+            style={styles.container}
+            contentContainerStyle={styles.content}
+            showsHorizontalScrollIndicator={false}
         />
     )
 }
