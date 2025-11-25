@@ -53,7 +53,7 @@ export default function Index() {
 
                         <View style={styles.modalFooter}>
                             <Option name="Excluir" icon="delete" variant="secondary" />
-                            <Option name= "Abrir" icon= "lan"/>
+                            <Option name= "Abrir" icon= "language"/>
                         </View>
                     </View>
                 </View>
