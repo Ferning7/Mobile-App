@@ -5,6 +5,8 @@ import { Alert, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 import { styles } from "./styles";
+import { linkStorage } from "@/storage/link-storage";
+
 
 import { Button } from "@/components/button";
 import { Categories } from "@/components/categories";
@@ -16,19 +18,30 @@ export default function Add() {
     const [name, setName] = useState("")
     const [url, setUrl] = useState("")
 
-    function handleAdd() {
-        if (!category) {
-            return Alert.alert("Categoria", "Selecione uma categoria")
-        }
-        if (!name.trim()) {
-            return Alert.alert("Nome", "Informe o Nome")
-        }
-        if (!url.trim()) {
-            return Alert.alert("URL", "Informe a URLk")
-        }
+    async function handleAdd() {
+        try {
+            if (!category) {
+                return Alert.alert("Categoria", "Selecione uma categoria")
+            }
+            if (!name.trim()) {
+                return Alert.alert("Nome", "Informe o Nome")
+            }
+            if (!url.trim()) {
+                return Alert.alert("URL", "Informe a URL")
+            }
+        
+            await linkStorage.save({
+                id: new Date().getTime().toString(),
+                name,
+                url,
+                category
+            })
 
-
-        console.log({ category, name, url })
+       
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possível salvar o link")
+            console.log(error)
+        }
     }
 
     return (

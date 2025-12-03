@@ -1,10 +1,20 @@
 import { MaterialIcons } from "@expo/vector-icons"
-import { FlatList, Image, Modal, Text, TouchableOpacity, View } from "react-native"
+import {
+    FlatList,
+    Image,
+    Modal,
+    Text,
+    TouchableOpacity,
+    View,
+    Alert
+} from "react-native"
 import { router } from "expo-router"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { colors } from "@/styles/colors"
 import { styles } from "./styles"
+import { linkStorage, LinkStorage } from "@/storage/link-storage"
+
 
 import { Categories } from "@/components/categories"
 import { Link } from "@/components/link"
@@ -12,7 +22,21 @@ import { Option } from "@/components/option"
 import { categories } from "@/utils/categories"
 
 export default function Index() {
+    const [links, setLinks] = useState<LinkStorage[]>([])
     const [category, setCategory] = useState(categories[0].name)
+
+    async function getLinks() {
+        try {
+            const response = await linkStorage.get()
+            setLinks(response)
+
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possível listar os links")
+        }
+    }
+    useEffect(() => {
+        getLinks()
+    }, [category])
 
     return (
         <View style={styles.container}>
@@ -23,16 +47,18 @@ export default function Index() {
                     <MaterialIcons name="add" size={32} color={colors.green[300]}></MaterialIcons>
                 </TouchableOpacity>
             </View>
-            <Categories onChange={setCategory} selected={category}/>
+            <Categories onChange={setCategory} selected={category} />
 
             <FlatList
-                data={["1", "2", "3", "4", "5"]}
-                keyExtractor={item => item}
-                renderItem={() => (<Link
-                    name="Rocketseat"
-                    url="https://rocketseat.com.br/"
-                    onDetails={() => console.log("Clicou!")}
-                />)}
+                data={links}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <Link
+                        name={item.name}
+                        url={item.url}
+                        onDetails={() => console.log("Clicou!")}
+                    />
+                )}
                 style={styles.links}
                 contentContainerStyle={styles.linksContent}
                 showsVerticalScrollIndicator={false}
