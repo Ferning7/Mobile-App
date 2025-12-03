@@ -28,5 +28,6 @@ export const styles = StyleSheet.create({
     form: {
         padding: 24,
         gap: 16,
+    
     }
 })
