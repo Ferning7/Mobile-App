@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.gray[100],
         fontSize: 16,
+        color: colors.gray[100]
     }
 })
