@@ -29,7 +29,7 @@ export default function Add() {
             if (!url.trim()) {
                 return Alert.alert("URL", "Informe a URL")
             }
-        
+
             await linkStorage.save({
                 id: new Date().getTime().toString(),
                 name,
@@ -37,7 +37,19 @@ export default function Add() {
                 category
             })
 
-       
+            Alert.alert("Sucesso", "Novo link adicionado", [
+                {
+                    text: "Ok", onPress: () => {
+                        if (router.canGoBack()) {
+                            router.back();
+                        } else {
+                            router.push("./"); // volta pra home
+                        }
+                    }
+                }
+            ])
+
+
         } catch (error) {
             Alert.alert("Erro", "Não foi possível salvar o link")
             console.log(error)
@@ -63,8 +75,8 @@ export default function Add() {
             <Categories onChange={setCategory} selected={category} />
 
             <View style={styles.form}>
-                <Input placeholder="Nome" onChangeText={setName} autoCorrect={false} autoCapitalize="none"/>
-                <Input placeholder="URL" onChangeText={setUrl} autoCorrect={false} autoCapitalize="none"/>
+                <Input placeholder="Nome" onChangeText={setName} autoCorrect={false} autoCapitalize="none" />
+                <Input placeholder="URL" onChangeText={setUrl} autoCorrect={false} autoCapitalize="none" />
                 <Button title="Adicionar" onPress={handleAdd} />
             </View>
         </View>

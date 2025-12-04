@@ -1,19 +1,19 @@
 import { MaterialIcons } from "@expo/vector-icons"
+import { router, useFocusEffect } from "expo-router"
+import { useCallback, useState } from "react"
 import {
+    Alert,
     FlatList,
     Image,
     Modal,
     Text,
     TouchableOpacity,
-    View,
-    Alert
+    View
 } from "react-native"
-import { router, useFocusEffect } from "expo-router"
-import { useState, useCallback } from "react"
 
+import { linkStorage, LinkStorage } from "@/storage/link-storage"
 import { colors } from "@/styles/colors"
 import { styles } from "./styles"
-import { linkStorage, LinkStorage } from "@/storage/link-storage"
 
 
 import { Categories } from "@/components/categories"
@@ -28,16 +28,20 @@ export default function Index() {
     async function getLinks() {
         try {
             const response = await linkStorage.get()
-            setLinks(response)
 
+            const filtered = response.filter((link) => link.category === category)
+
+            setLinks(filtered)
         } catch (error) {
             Alert.alert("Erro", "Não foi possível listar os links")
         }
     }
-    
-    useFocusEffect(useCallback(() => {
-        getLinks()
-    }))
+
+    useFocusEffect(
+        useCallback(() => {
+            getLinks()
+        }, [category])
+    )
 
     return (
         <View style={styles.container}>
