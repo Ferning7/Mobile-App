@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";

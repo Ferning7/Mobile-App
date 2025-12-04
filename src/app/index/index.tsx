@@ -22,6 +22,7 @@ import { Option } from "@/components/option"
 import { categories } from "@/utils/categories"
 
 export default function Index() {
+    const [showModal, setShowModal] = useState(false)
     const [links, setLinks] = useState<LinkStorage[]>([])
     const [category, setCategory] = useState(categories[0].name)
 
@@ -61,19 +62,20 @@ export default function Index() {
                     <Link
                         name={item.name}
                         url={item.url}
-                        onDetails={() => console.log("Clicou!")}
+                        onDetails={() => setShowModal(true)}
                     />
                 )}
                 style={styles.links}
                 contentContainerStyle={styles.linksContent}
                 showsVerticalScrollIndicator={false}
             />
-            <Modal transparent visible={false}>
+            <Modal transparent visible={showModal}>
                 <View style={styles.modal}>
                     <View style={styles.modalContent}>
                         <View style={styles.modalHeader}>
                             <Text style={styles.modalCategory}> Curso </Text>
-                            <TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => setShowModal(false)}> 
                                 <MaterialIcons name="close"
                                     size={20}
                                     color={colors.gray[400]} />
