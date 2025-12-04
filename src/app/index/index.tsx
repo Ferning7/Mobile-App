@@ -8,8 +8,8 @@ import {
     View,
     Alert
 } from "react-native"
-import { router } from "expo-router"
-import { useState, useEffect } from "react"
+import { router, useFocusEffect } from "expo-router"
+import { useState, useCallback } from "react"
 
 import { colors } from "@/styles/colors"
 import { styles } from "./styles"
@@ -34,9 +34,10 @@ export default function Index() {
             Alert.alert("Erro", "Não foi possível listar os links")
         }
     }
-    useEffect(() => {
+    
+    useFocusEffect(useCallback(() => {
         getLinks()
-    }, [category])
+    }))
 
     return (
         <View style={styles.container}>
